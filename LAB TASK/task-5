@@ -1,0 +1,49 @@
+import java.util.*;
+
+class BankAccount {
+    private double balance;
+
+    BankAccount(double balance) {
+        this.balance = balance;
+    }
+
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    void withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+        }
+    }
+
+    double getBalance() {
+        return balance;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        // Initial balance
+        double initialBalance = sc.nextDouble();
+
+        BankAccount account = new BankAccount(initialBalance);
+
+        for (int i = 0; i < n; i++) {
+            String operation = sc.next();
+            double amount = sc.nextDouble();
+
+            if (operation.equalsIgnoreCase("deposit")) {
+                account.deposit(amount);
+            } else if (operation.equalsIgnoreCase("withdraw")) {
+                account.withdraw(amount);
+            }
+        }
+
+        System.out.printf("%.2f%n", account.getBalance());
+    }
+}
